@@ -123,7 +123,47 @@ int main()
         printf("Duplicated string: %s\n", duplicate);
 
         free(duplicate);
+	//substr
+	  char *s = "Hello, World!";
+  char *substring;
+
+  // Test case: normal substring
+  substring = ft_substr (s, 7, 5);
+  if (substring != NULL)
+	{
+	  printf ("Substring: %s\n", substring);	// Expected output: "World"
+	  free (substring);
+	}
+
+  // Test case: start beyond the length of the string
+  substring = ft_substr (s, 20, 5);
+  if (substring != NULL)
+	{
+	  printf ("Substring: %s\n", substring);	// Expected output: ""
+	  free (substring);
+	}
+
+  // Test case: len greater than the remaining length of the string
+  substring = ft_substr (s, 7, 50);
+  if (substring != NULL)
+	{
+	  printf ("Substring: %s\n", substring);	// Expected output: "World!"
+	  free (substring);
+	  //strjoin
+	    char *s1_join = "Hello, ";
+    char *s2_join = "World!";
+    char *result;
+
+    result = ft_strjoin(s1_join, s2_join);
+    if (result != NULL)
+    {
+        printf("Joined string: %s\n", result); // Expected output: "Hello, World!"
+        free(result); // Free the allocated memory
+    }
+    else
+    {
+        printf("Memory allocation failed.\n");
+    }
+
     return (0);
 }
-
-
