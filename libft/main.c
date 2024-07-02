@@ -74,6 +74,55 @@ int main()
         printf("buf1 is greater than buf2\n");
     else
         printf("buf1 is equal to buf2\n");
+    //strnstr
+        const char haystack[] = "Hello, World!";
+    const char needle[] = "World";
+    char *result;
+
+    result = ft_strnstr(haystack, needle, 12); // Searching within the first 12 characters
+    if (result)
+        printf("Found: %s\n", result);
+    else
+        printf("Not found\n");
+
+    result = ft_strnstr(haystack, needle, 5); // Searching within the first 5 characters
+    if (result)
+        printf("Found: %s\n", result);
+    else
+        printf("Not found\n");
+	//atoi
+	printf("Testing atoi and ft_atoi:\n");
+
+
+        // Testing atoi
+        int atoi_result = atoi(   -42);
+        printf("atoi(\"%s\") = %d\n", str, atoi_result);
+
+        // Testing ft_atoi
+        int ft_atoi_result = ft_atoi(   -42);
+        printf("ft_atoi(\"%s\") = %d\n", str, ft_atoi_result);
+	
+	//calloc
+	    char *arr;
+    size_t num_elements = 9;
+    size_t element_size = sizeof(char);
+
+    arr = (int *)ft_calloc(num_elements, element_size);
+       for (size_t i = 0; i < num_elements; i++)
+        {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
+	//strdup
+	const char *original = "Hello, World!";
+    char *duplicate;
+
+    duplicate = ft_strdup(original);
+
+        printf("Original string: %s\n", original);
+        printf("Duplicated string: %s\n", duplicate);
+
+        free(duplicate);
     return (0);
 }
 
