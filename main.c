@@ -1,5 +1,73 @@
-int main()
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emmalons <emmalons@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/20 17:43:47 by emmalons          #+#    #+#             */
+/*   Updated: 2024/07/04 13:38:57 by emmalons         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+#include "libft.h"
+#include <stddef.h>
+#include <string.h>
+
+int	main(void)
 {
+	char	str[] = "123456789";
+	//char	*str_memset = ft_memset(str, '-', 3);
+	printf("TEST FT_ISALPHA\na = %d\nA = %d\n1 = %d\n$ = %d\n",
+		ft_isalpha('a'),
+		ft_isalpha('A'),
+		ft_isalpha('1'),
+		ft_isalpha('$'));
+	printf("TEST FT_ISDIGIT\na = %d\nA = %d\n1 = %d\n$ = %d\n",
+		ft_isdigit('a'),
+		ft_isdigit('A'),
+		ft_isdigit('1'),
+		ft_isdigit('$'));
+	printf("TEST FT_ISALNUM\na = %d\nA = %d\n1 = %d\n$ = %d\n",
+		ft_isalnum('a'),
+		ft_isalnum('A'),
+		ft_isalnum('1'),
+		ft_isalnum('$'));
+	printf("TEST FT_STRLEN\nLength of %s = %zu\n", str, ft_strlen(str));
+	printf("TEST FT_MEMSET\nBefore: %s\n", str);
+char	*str_memset = ft_memset(str, '-', 3);
+	printf("After: %s\n", str_memset);
+	
+	char	str_bzero[4] = "holi";
+	printf("TEST FT_BZERO\nBefore: %s\n", str_bzero);
+	ft_bzero(str_bzero, 2);
+	printf("After:");
+	for (int i = 0; i < 4; i++)
+		printf("%c", str_bzero[i]);
+	printf("\n");
+	printf("TEST FT_MEMCPY\n");
+	char	src_memcpy[50] = "This is the source string";
+	char	dest_memcpy[50];
+	ft_memcpy(dest_memcpy, src_memcpy, strlen(src_memcpy) + 1);
+	printf("Source: %s\n", src_memcpy);
+	printf("Destination: %s\n", dest_memcpy);
+	printf("TEST FT_TOUPPER\na using ft_toupper = %d\na = %d\n", ft_toupper('a'), 'a');
+	printf("TEST FT_TOLOWER\nA using ft_tolower = %d\nA = %d\n", ft_tolower('A'), 'A');
+	printf("TEST FT_STRCHR\n");
+	char	*str_strchr = "Hello World";
+	char	*result = ft_strchr(str_strchr, '\0');
+	if (result)
+		printf("Result found at %ld position of the string\n", result - str_strchr + 1);
+	else
+		printf("No result found");
+	printf("TEST FT_STRRCHR\n");
+        char    *str_strrchr = "Hello World";
+        char    *result_r = ft_strrchr(str_strchr, 'o');
+        if (result_r)
+                printf("Result found at %ld position of the string\n", result_r - str_strrchr + 1);
+        else
+                printf("No result found");
     //memmove
 	char str1[] = "abcdef";
 	char str2[] = "abcdef";
@@ -164,6 +232,5 @@ int main()
     {
         printf("Memory allocation failed.\n");
     }
-
-    return (0);
+	return (0);
 }
