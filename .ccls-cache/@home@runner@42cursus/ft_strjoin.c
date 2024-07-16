@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emmalons <emmalons@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 13:44:57 by emmalons          #+#    #+#             */
-/*   Updated: 2024/07/04 15:56:02 by emmalons         ###   ########.fr       */
+/*   Created: 2024/07/04 13:49:13 by emmalons          #+#    #+#             */
+/*   Updated: 2024/07/04 16:26:39 by emmalons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include <stdlib.h>
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*s;
-	size_t	srcsize;
-	int		i;
+	char	*joined_str;
+	size_t	s1_len;
+	size_t	s2_len;
 
-	s = (char *)src;
-	srcsize = ft_strlen(s);
-	i = 0;
-	if (!dstsize)
-		return (srcsize);
-	while (i < ((int)dstsize - 1) && src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (srcsize);
+	if (!s1 || !s2)
+		return (NULL);
+	s1_len = ft_strlen((char *)s1);
+	s2_len = ft_strlen((char *)s2);
+	joined_str = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
+	if (!joined_str)
+		return (NULL);
+	ft_strlcpy(joined_str, s1, s1_len + 1);
+	ft_strlcpy(joined_str + s1_len, s2, s2_len + 1);
+	return (joined_str);
 }
