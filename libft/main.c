@@ -225,6 +225,15 @@
     {
       printf("Memory allocation failed.\n");
     }
+    printf("TEST STRTRIM\n");
+    char *s1_strtrim = "  Hello, World!  ";
+    char *set_strtrim = " ";
+    char *trimmed_str;
+    
+    trimmed_str = ft_strtrim(s1_strtrim, set_strtrim);
+    printf("Original: '%s'\n", s1_strtrim);
+    printf("Trimmed : '%s'\n", trimmed_str);
+    free(trimmed_str);
 
     return (0);
   }
