@@ -235,5 +235,25 @@
     printf("Trimmed : '%s'\n", trimmed_str);
     free(trimmed_str);
 
+    printf("TEST   ITOA\n");
+    int		numbers[] = {0, -1, 123, -123, 2147483647, -2147483648};
+    char	*result_itoa;
+    int		i_itoa;
+
+    i_itoa = 0;
+    while (i_itoa < 6)
+    {
+      result_itoa = ft_itoa(numbers[i_itoa]);
+      if (result)
+      {
+        printf("ft_itoa(%d) = %s\n", numbers[i_itoa], result);
+        free(result);
+      }
+      else
+      {
+        printf("Memory allocation failed for ft_itoa(%d)\n", numbers[i_itoa]);
+      }
+      i++;
+    }
     return (0);
   }
