@@ -46,9 +46,9 @@ char *ft_itoa(int n)
     str[0] = '-';
     sign = 1;
   }
-  while (len > sign)
+  while ((int)len > sign)
   {
-    str[len] = (num % 10) + '0';
+    str[len - 1] = (num % 10) + '0';
     num = num / 10;
     len--;
   }

@@ -244,16 +244,16 @@
     while (i_itoa < 6)
     {
       result_itoa = ft_itoa(numbers[i_itoa]);
-      if (result)
+      if (result_itoa)
       {
-        printf("ft_itoa(%d) = %s\n", numbers[i_itoa], result);
-        free(result);
+        printf("ft_itoa(%d) = %s\n", numbers[i_itoa], result_itoa);
+        free(result_itoa);
       }
       else
       {
         printf("Memory allocation failed for ft_itoa(%d)\n", numbers[i_itoa]);
       }
-      i++;
+      i_itoa++;
     }
     return (0);
   }
