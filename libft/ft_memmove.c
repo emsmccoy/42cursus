@@ -11,37 +11,35 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "libft.h"
+
+static void	*ft_reverse_memcpy(void *dest, const void *src, size_t n)
+{
+	char	d*;
+	const char	*s;
+
+	if (!dest || !src)
+		return (0);
+	d = dest + n - 1;
+	s = src + n -1;
+	while (n > 0)
+	{
+		*d = *s;
+		n--;
+		d--;
+		s--;
+	}
+	return (d);
+}
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
-
-	d = (unsigned char *)dest;
-	s = (const unsigned char *)src;
-	if (d == s)
+	if (!dest || !src)
+		return (NULL);
 		return (dest);
-	if (s < d && d < s + n)
-	{
-		s = s + n - 1;
-		d = d + n - 1;
-		while (n)
-		{
-			*d = *s;
-			d--;
-			s--;
-			n--;
-		}
-	}
+	if (dest < src)
+		ft_memcpy(dest, src, n);
 	else
-	{
-		while (n)
-		{
-			*d = *s;
-			d++;
-			s++;
-			n--;
-		}
-	}
+		ft_reverse_memcpy(dest, src, n);
 	return (dest);
 }
