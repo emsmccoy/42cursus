@@ -15,7 +15,7 @@
 
 static void	*ft_reverse_memcpy(void *dest, const void *src, size_t n)
 {
-	char	d*;
+	char		*d;
 	const char	*s;
 
 	if (!dest || !src)
@@ -36,7 +36,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	if (!dest || !src)
 		return (NULL);
-		return (dest);
+	return (dest);
 	if (dest < src)
 		ft_memcpy(dest, src, n);
 	else
