@@ -18,7 +18,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned char	uc2;
 
 	if (!n)
-		return (NULL);
+		return (0);
 	while (*s1 == *s2 && *s1 && *s2 && n > 1)
 	{
 		s1++;
