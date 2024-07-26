@@ -10,55 +10,97 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stddef.h>
 #include <stdlib.h>
 
-static size_t	ft_substr_count(char const *s, char c)
+static int	word_count(const char *s, char c)
 {
-	int	in_substr;
 	int	count;
+	int	i;
 
-	in_substr = 0;
+	i = 0;
 	count = 0;
-	while (*s)
+	while (s[i])
 	{
-		if (*s != c && !in_substr)
-		{
-			in_substr = 1;
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
 			count++;
-		}
-		else if (*s == c)
-			in_substr = 0;
-		s++;
+		i++;
 	}
 	return (count);
 }
 
-char	**ft_split(char const *s, char c)
+static void	free_all(char **split)
 {
-	char	**lst;
-	size_t	word_len;
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+static char	*create_word(const char *s, char c)
+{
+	char	*word;
+	int		len;
 	int		i;
 
-	lst = (char **)malloc((ft_substr_count(s, c) + 1) * sizeof(char *));
-	if (!s || !lst)
-		return (0);
 	i = 0;
-	while (*s)
+	len = 0;
+	while (s[len] && s[len] != c)
+		len++;
+	word = (char *) malloc(sizeof(char) * (len + 1));
+	if (!word)
+		return (NULL);
+	while (i < len)
 	{
-		while (*s == c && *s)
-			s++;
-		if (*s)
+		word[i] = s[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+static int	allocate_word(const char *s, char c, char **split, int words)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s[i] && j < words)
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i])
 		{
-			if (!ft_strchr(s, c))
-				word_len = ft_strlen(s);
-			else
-				word_len = ft_strchr(s, c) - s;
-			lst[i++] = ft_substr(s, 0, word_len);
-			s += word_len;
+			split[j] = create_word(s + i, c);
+			if (!split[j])
+			{
+				free_all(split);
+				return (0);
+			}
+			while (s[i] && s[i] != c)
+				i++;
+			j++;
 		}
 	}
-	lst[i] = NULL;
-	return (lst);
+	split[j] = NULL;
+	return (1);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**split;
+	int		length;
+
+	length = word_count(s, c);
+	split = (char **) malloc(sizeof(char *) * (length + 1));
+	if (!split)
+		return (NULL);
+	if (!allocate_word(s, c, split, length))
+		return (NULL);
+	return (split);
 }
