@@ -14,6 +14,22 @@
   #include "libft.h"
   #include <string.h>
   #include <stdlib.h>
+  #include <unistd.h>
+
+char strmapi_function(unsigned int i, char c)
+{
+  if (c >= 'a' && c <= 'z')
+    c = c - 32;
+  c = c + i;
+  return c;
+}
+
+void striteri_function(unsigned int i, char * c)
+{
+  if (*c >= 'a' && *c <= 'z')
+    *c = *c - 32;
+  *c  = *c + i;
+}
 
   int	main(void)
   {
@@ -225,6 +241,129 @@
     {
       printf("Memory allocation failed.\n");
     }
+    printf("TEST STRTRIM\n");
+    char *s1_strtrim = "  Hello, World!  ";
+    char *set_strtrim = " ";
+    char *trimmed_str;
+    
+    trimmed_str = ft_strtrim(s1_strtrim, set_strtrim);
+    printf("Original: '%s'\n", s1_strtrim);
+    printf("Trimmed : '%s'\n", trimmed_str);
+    free(trimmed_str);
 
+    printf("TEST   ITOA\n");
+    int		numbers[] = {0, -1, 123, -123, 2147483647, -2147483648};
+    char	*result_itoa;
+    int		i_itoa;
+
+    i_itoa = 0;
+    while (i_itoa < 6)
+    {
+      result_itoa = ft_itoa(numbers[i_itoa]);
+      if (result_itoa)
+      {
+        printf("ft_itoa(%d) = %s\n", numbers[i_itoa], result_itoa);
+        free(result_itoa);
+      }
+      else
+      {
+        printf("Memory allocation failed for ft_itoa(%d)\n", numbers[i_itoa]);
+      }
+      i_itoa++;
+    }
+    printf("TEST STRMAPI\n");
+    char *s_strmapi = "hello";
+    char *result_strmapi = ft_strmapi(s_strmapi, strmapi_function);
+
+    if (result_strmapi)
+    {
+        printf("Original: %s\n", s_strmapi);
+        printf("Modified: %s\n", result_strmapi);
+        free(result_strmapi);
+    }
+    else
+    {
+        printf("Memory allocation failed\n");
+    }
+    printf("TEST STRITERI\n");
+    char s_striteri[] = "hello";
+    printf("Original: %s\n", s_striteri);
+    ft_striteri(s_striteri, striteri_function);
+    printf("Modified: %s\n", s_striteri);
+    printf("TEST PUTCHAR_FD\n");
+    char c_putchar_fd = 'A';
+    ft_putchar_fd(c_putchar_fd, 1);
+    printf("\n");
+    printf("TEST PUTSTR_FD\n");
+    char *s_putstr_fd = "Hello world!";
+    ft_putstr_fd(s_putstr_fd, 1);
+    printf("\n");
+    printf("TEST PUTENDL_FD\n");
+    ft_putendl_fd(s_putstr_fd, 1);
+    printf("TEST PUTNBR_FD\n");
+    ft_putnbr_fd(12345, 1);
+    printf("\n");
+    ft_putnbr_fd(-67890, 1);
+    printf("\n");
+    ft_putnbr_fd(0, 1);
+    printf("\n");
+    printf("TEST SPLIT\n");
+    // Test case 1: Regular string with spaces
+    char **result_split = ft_split("Hello world this is a test", ' ');
+    for (int i = 0; result_split[i] != NULL; i++)
+    {
+        printf("result[%d]: %s\n", i, result_split[i]);
+        free(result_split[i]);
+    }
+    free(result_split);
+
+    // Test case 2: String with multiple delimiters in a row
+    result_split = ft_split("split this,, string,,, by commas", ',');
+    for (int i = 0; result_split[i] != NULL; i++)
+    {
+        printf("result[%d]: %s\n", i, result_split[i]);
+        free(result_split[i]);
+    }
+    free(result_split);
+
+    // Test case 3: String with leading and trailing delimiters
+    result_split = ft_split("  surrounded by spaces  ", ' ');
+    for (int i = 0; result_split[i] != NULL; i++)
+    {
+        printf("result[%d]: %s\n", i, result_split[i]);
+        free(result_split[i]);
+    }
+    free(result_split);
+
+    // Test case 4: String with no delimiters
+    result_split = ft_split("singleword", ' ');
+    for (int i = 0; result_split[i] != NULL; i++)
+    {
+        printf("result[%d]: %s\n", i, result_split[i]);
+        free(result_split[i]);
+    }
+    free(result_split);
+
+    // Test case 5: Empty string
+    result_split = ft_split("", ' ');
+    if (result_split[0] == NULL)
+        printf("result is empty\n");
+    free(result_split);
+
+    // Test case 6: Delimiter not in string
+    result_split = ft_split("node|delimiter|here", ' ');
+    for (int i = 0; result_split[i] != NULL; i++)
+    {
+        printf("result[%d]: %s\n", i, result_split[i]);
+        free(result_split[i]);
+    }
+    free(result_split);
+
+    // Test case 7: String with only delimiters
+    result_split = ft_split(",,,", ',');
+    if (result_split[0] == NULL)
+        printf("result is empty\n");
+    free(result_split);
     return (0);
   }
+
