@@ -12,9 +12,8 @@
 
 NAME = libftprintf.a
 
-SRCS = 
-
-OBJS = $(SRC:.c=.o)
+SRCS = srcs/ft_printf.c
+OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
@@ -22,19 +21,19 @@ CFLAGS = -Wall -Wextra -Werror -I./includes/
 
 RM = rm -rf
 
-DEPS = libft.h
+DEPS = includes/ft_printf.h includes/libft.h
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(MAKE) -C ./libft
 	cp libft/libft.a $(NAME)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
 	@echo "Library $(NAME) created."
 
 %.o: %.c $(DEPS)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 	@echo "Compiled "$<" to "$@"."
 
 clean:
