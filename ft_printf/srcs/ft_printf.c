@@ -24,6 +24,8 @@ int	ft_printf(const char *format, ...)
 				count += ft_putchar('%');
 			else if (format[i] == 'd' || format[i] == 'i')
 				count += ft_putnbr(va_arg(args, int));
+			else if (format[i] == 'u')
+				count += ft_putnbr_unsigned(va_arg(args, unsigned int));
 		}
 		else
 			count += ft_putchar(format[i]);

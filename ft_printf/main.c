@@ -9,7 +9,7 @@ int	main(void)
 	ft_printf("Percent: %%\n");
 	ft_printf("Integer: %d\n", 42);
 	ft_printf("Negative integer: %d\n", -42);
-	//ft_printf("Unsigned integer: %u\n", 42);
+	ft_printf("Unsigned integer: %u\n", 42);
 	//ft_printf("Hexadecimal (lowercase): %x\n", 255);
 	//ft_printf("Hexadecimal (uppercase: %X\n)", 255);
 	return (0);
