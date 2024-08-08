@@ -26,6 +26,10 @@ int	ft_printf(const char *format, ...)
 				count += ft_putnbr(va_arg(args, int));
 			else if (format[i] == 'u')
 				count += ft_putnbr_unsigned(va_arg(args, unsigned int));
+			else if (format[i] == 'x')
+				count += ft_puthex_lower(va_arg(args, unsigned int));
+			else if (format[i] == 'X')
+				count += ft_puthex_upper(va_arg(args, unsigned int));
 		}
 		else
 			count += ft_putchar(format[i]);
