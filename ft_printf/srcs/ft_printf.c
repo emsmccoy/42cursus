@@ -30,6 +30,8 @@ int	ft_printf(const char *format, ...)
 				count += ft_puthex_lower(va_arg(args, unsigned int));
 			else if (format[i] == 'X')
 				count += ft_puthex_upper(va_arg(args, unsigned int));
+			else if (format[i] == 'p')
+				count += ft_putptr((unsigned long)va_arg(args, void *));
 		}
 		else
 			count += ft_putchar(format[i]);

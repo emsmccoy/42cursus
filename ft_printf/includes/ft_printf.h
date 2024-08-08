@@ -11,5 +11,6 @@ int	ft_putnbr(int n);
 int	ft_putnbr_unsigned(unsigned int n);
 int	ft_puthex_lower(unsigned int n);
 int	ft_puthex_upper(unsigned int n);
+int	ft_putptr(unsigned long ptr);
 
 #endif

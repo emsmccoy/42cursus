@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 
-SRCS = srcs/ft_printf.c srcs/ft_putchar.c srcs/ft_putstr.c srcs/ft_putnbr.c srcs/ft_putnbr_unsigned.c srcs/ft_puthex.c
+SRCS = srcs/ft_printf.c srcs/ft_putchar.c srcs/ft_putstr.c srcs/ft_putnbr.c srcs/ft_putnbr_unsigned.c srcs/ft_puthex.c srcs/ft_putptr.c
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
